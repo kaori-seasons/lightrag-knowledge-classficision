@@ -1,4 +1,5 @@
 import asyncio
+import aiohttp
 from datetime import datetime
 from typing import Dict, Any, Optional, List
 
@@ -417,3 +418,139 @@ class BusinessResourceIntegrator:
                 analysis["recommendations"].append("加强设备监控和预防性维护")
 
         return analysis
+
+    async def _fallback_to_http_api(self, resource_type: str, params: Dict[str, Any]) -> Dict[str, Any]:
+        """回退到HTTP API调用"""
+        try:
+            if resource_type == "maintenance_system":
+                return await self._call_maintenance_db_http(params)
+            elif resource_type == "hazard_system":
+                return await self._call_hazard_db_http(params)
+            elif resource_type == "inspection_system":
+                return await self._call_inspection_db_http(params)
+            else:
+                return {"status": "error", "message": f"HTTP API不支持资源类型: {resource_type}"}
+        except Exception as e:
+            return {"status": "error", "message": f"HTTP API调用失败: {str(e)}"}
+
+    async def _call_maintenance_db_http(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """通过HTTP API调用维护数据库"""
+        system_config = self.external_systems["maintenance_db"]
+
+        async with aiohttp.ClientSession() as session:
+            headers = {
+                "Authorization": f"Bearer {system_config['auth_token']}",
+                "Content-Type": "application/json"
+            }
+
+            device_code = params.get('device_code')
+            url = f"{system_config['url']}/maintenance/records"
+
+            async with session.get(
+                    url,
+                    params={"device_code": device_code, "limit": 50},
+                    headers=headers,
+                    timeout=system_config.get('timeout', 30)
+            ) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    return {
+                        "status": "success",
+                        "source": "maintenance_db_http",
+                        "data": data,
+                        "maintenance_records": data.get("records", []),
+                        "last_maintenance": data.get("last_maintenance"),
+                        "next_scheduled": data.get("next_scheduled"),
+                        "query_method": "http_api"
+                    }
+                else:
+                    return {
+                        "status": "error",
+                        "message": f"维护数据库HTTP查询失败: {response.status}"
+                    }
+
+    async def _call_hazard_db_http(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """通过HTTP API调用隐患数据库"""
+        system_config = self.external_systems["hazard_db"]
+
+        async with aiohttp.ClientSession() as session:
+            headers = {
+                "Authorization": f"Bearer {system_config['auth_token']}",
+                "Content-Type": "application/json"
+            }
+
+            device_code = params.get('device_code')
+            area_name = params.get('area_name')
+
+            url = f"{system_config['url']}/hazards/search"
+            query_params = {
+                "device_code": device_code,
+                "area": area_name,
+                "status": "active",
+                "limit": 30
+            }
+
+            async with session.get(
+                    url,
+                    params=query_params,
+                    headers=headers,
+                    timeout=system_config.get('timeout', 30)
+            ) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    return {
+                        "status": "success",
+                        "source": "hazard_db_http",
+                        "data": data,
+                        "active_hazards": data.get("hazards", []),
+                        "risk_level": data.get("overall_risk_level"),
+                        "recommendations": data.get("recommendations", []),
+                        "query_method": "http_api"
+                    }
+                else:
+                    return {
+                        "status": "error",
+                        "message": f"隐患数据库HTTP查询失败: {response.status}"
+                    }
+
+    async def _call_inspection_db_http(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """通过HTTP API调用点检数据库"""
+        system_config = self.external_systems["inspection_db"]
+
+        async with aiohttp.ClientSession() as session:
+            headers = {
+                "Authorization": f"Bearer {system_config['auth_token']}",
+                "Content-Type": "application/json"
+            }
+
+            device_code = params.get('device_code')
+            time_range = params.get('time_range', '30d')
+
+            url = f"{system_config['url']}/inspections/device/{device_code}"
+            query_params = {
+                "time_range": time_range,
+                "include_details": True
+            }
+
+            async with session.get(
+                    url,
+                    params=query_params,
+                    headers=headers,
+                    timeout=system_config.get('timeout', 30)
+            ) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    return {
+                        "status": "success",
+                        "source": "inspection_db_http",
+                        "data": data,
+                        "inspection_records": data.get("inspections", []),
+                        "abnormal_items": data.get("abnormal_items", []),
+                        "trend_analysis": data.get("trend_analysis"),
+                        "query_method": "http_api"
+                    }
+                else:
+                    return {
+                        "status": "error",
+                        "message": f"点检数据库HTTP查询失败: {response.status}"
+                    }
