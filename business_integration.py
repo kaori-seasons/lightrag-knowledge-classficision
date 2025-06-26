@@ -319,3 +319,101 @@ class BusinessResourceIntegrator:
             enhanced_records.append(enhanced_record)
 
         return enhanced_records
+
+    async def _analyze_risk_distribution(self, hazard_records: List[Dict]) -> Dict[str, Any]:
+        """分析风险等级分布"""
+        risk_distribution = {"高": 0, "中": 0, "低": 0, "未知": 0}
+        status_distribution = {}
+
+        for record in hazard_records:
+            risk_level = record.get("risk_level", "未知")
+            if risk_level in risk_distribution:
+                risk_distribution[risk_level] += 1
+            else:
+                risk_distribution["未知"] += 1
+
+            status = record.get("status", "未知")
+            status_distribution[status] = status_distribution.get(status, 0) + 1
+
+        return {
+            "risk_distribution": risk_distribution,
+            "status_distribution": status_distribution,
+            "total_hazards": len(hazard_records),
+            "high_risk_count": risk_distribution["高"],
+            "active_hazards": status_distribution.get("active", 0)
+        }
+
+    async def _analyze_inspection_trends(self, inspection_records: List[Dict]) -> Dict[str, Any]:
+        """分析点检趋势"""
+        trend_data = {
+            "total_inspections": len(inspection_records),
+            "abnormal_count": 0,
+            "inspection_frequency": {},
+            "abnormal_trend": []
+        }
+
+        for record in inspection_records:
+            # 统计异常项
+            abnormal_items = record.get("abnormal_items", "")
+            if abnormal_items and abnormal_items.strip():
+                trend_data["abnormal_count"] += 1
+
+                # 统计点检频率
+            inspection_type = record.get("inspection_type", "未知")
+            trend_data["inspection_frequency"][inspection_type] = \
+                trend_data["inspection_frequency"].get(inspection_type, 0) + 1
+
+            # 计算异常率
+        if trend_data["total_inspections"] > 0:
+            trend_data["abnormal_rate"] = trend_data["abnormal_count"] / trend_data["total_inspections"]
+        else:
+            trend_data["abnormal_rate"] = 0
+
+        return trend_data
+
+    async def _generate_combined_mcp_analysis(self, maintenance_data, hazard_data,
+                                              inspection_data, params) -> Dict[str, Any]:
+        """生成MCP组合分析"""
+        analysis = {
+            "device_code": params.get("device_code"),
+            "analysis_time": datetime.now().isoformat(),
+            "data_sources": [],
+            "key_insights": [],
+            "risk_indicators": [],
+            "recommendations": []
+        }
+
+        # 分析维护数据
+        if maintenance_data and maintenance_data.get("status") == "success":
+            analysis["data_sources"].append("maintenance_db")
+            records = maintenance_data.get("maintenance_records", [])
+            if records:
+                latest_maintenance = max(records, key=lambda x: x.get("maintenance_date", ""))
+                analysis["key_insights"].append(f"最近维护: {latest_maintenance.get('maintenance_date')}")
+
+                # 检查维护频率
+                if len(records) < 3:
+                    analysis["risk_indicators"].append("维护频率偏低")
+                    analysis["recommendations"].append("建议增加维护频率")
+
+                    # 分析隐患数据
+        if hazard_data and hazard_data.get("status") == "success":
+            analysis["data_sources"].append("hazard_db")
+            risk_analysis = hazard_data.get("risk_analysis", {})
+            high_risk_count = risk_analysis.get("high_risk_count", 0)
+
+            if high_risk_count > 0:
+                analysis["risk_indicators"].append(f"存在 {high_risk_count} 个高风险隐患")
+                analysis["recommendations"].append("优先处理高风险隐患")
+
+                # 分析点检数据
+        if inspection_data and inspection_data.get("status") == "success":
+            analysis["data_sources"].append("inspection_db")
+            trend_analysis = inspection_data.get("trend_analysis", {})
+            abnormal_rate = trend_analysis.get("abnormal_rate", 0)
+
+            if abnormal_rate > 0.3:  # 异常率超过30%
+                analysis["risk_indicators"].append(f"点检异常率高达 {abnormal_rate:.1%}")
+                analysis["recommendations"].append("加强设备监控和预防性维护")
+
+        return analysis
