@@ -1,3 +1,4 @@
+import asyncio
 from datetime import datetime
 from typing import Dict, Any, Optional, List
 
@@ -137,26 +138,23 @@ class BusinessResourceIntegrator:
 
     async def call_external_resources(self, resource_type: str, params: Dict[str, Any]) -> Dict[str, Any]:
         """模拟调用外部业务资源"""
-        # 这里可以集成实际的外部API调用
-        mock_responses = {
-            "maintenance_system": {
-                "status": "success",
-                "data": f"维护系统响应: 设备 {params.get('device')} 的维护记录已查询",
-                "recommendations": ["定期检查润滑系统", "更换磨损部件", "加强操作培训"]
-            },
-            "inventory_system": {
-                "status": "success",
-                "data": f"库存系统响应: {params.get('part')} 库存充足",
-                "availability": True
-            },
-            "expert_system": {
-                "status": "success",
-                "data": "专家系统分析完成",
-                "expert_advice": "建议立即停机检修，避免进一步损坏"
-            }
-        }
-
-        return mock_responses.get(resource_type, {"status": "error", "message": "未知资源类型"})
+        """调用外部业务资源 - 支持HTTP API和直接数据库查询"""
+        try:
+            # 优先使用MCP工具进行直接数据库查询
+            if resource_type == "maintenance_system":
+                return await self._call_maintenance_with_mcp(params)
+            elif resource_type == "hazard_system":
+                return await self._call_hazard_with_mcp(params)
+            elif resource_type == "inspection_system":
+                return await self._call_inspection_with_mcp(params)
+            elif resource_type == "combined_analysis":
+                return await self._call_combined_resources_with_mcp(params)
+            else:
+                return {"status": "error", "message": f"未知资源类型: {resource_type}"}
+        except Exception as e:
+            # 如果MCP工具失败，回退到HTTP API调用
+            print(f"MCP工具调用失败，回退到HTTP API: {e}")
+            return await self._fallback_to_http_api(resource_type, params)
 
     async def _call_maintenance_with_mcp(self, params: Dict[str, Any]):
         """使用MCP工具查询维护数据库"""
@@ -187,6 +185,109 @@ class BusinessResourceIntegrator:
                 return result
         except Exception as e:
             raise e
+
+    async def _call_hazard_with_mcp(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """使用MCP工具查询隐患数据库"""
+        try:
+            mcp_params = {
+                "device_code": params.get("device_code"),
+                "area_code": params.get("area_name"),  # 映射area_name到area_code
+                "risk_level": params.get("risk_level"),
+                "status": params.get("status", "active")
+            }
+
+            result = await self.mcp_tools.execute_tool("query_hazard_records", mcp_params)
+
+            if result.get("status") == "success":
+                # 分析风险等级分布
+                risk_analysis = await self._analyze_risk_distribution(result["data"])
+
+                return {
+                    "status": "success",
+                    "source": "hazard_db_mcp",
+                    "data": result["data"],
+                    "active_hazards": [h for h in result["data"] if h.get("status") == "active"],
+                    "risk_analysis": risk_analysis,
+                    "record_count": result["count"],
+                    "query_method": "direct_database",
+                    "query_time": result["query_time"]
+                }
+            else:
+                return result
+
+        except Exception as e:
+            return {"status": "error", "message": f"隐患数据库MCP查询失败: {str(e)}"}
+
+    async def _call_inspection_with_mcp(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """使用MCP工具查询点检数据库"""
+        try:
+            mcp_params = {
+                "device_code": params.get("device_code"),
+                "inspection_type": params.get("inspection_type"),
+                "start_date": params.get("start_date"),
+                "end_date": params.get("end_date")
+            }
+
+            result = await self.mcp_tools.execute_tool("query_inspection_records", mcp_params)
+
+            if result.get("status") == "success":
+                # 分析异常趋势
+                trend_analysis = await self._analyze_inspection_trends(result["data"])
+
+                return {
+                    "status": "success",
+                    "source": "inspection_db_mcp",
+                    "data": result["data"],
+                    "inspection_records": result["data"],
+                    "abnormal_items": [item for record in result["data"]
+                                       for item in (record.get("abnormal_items", "") or "").split(",")
+                                       if item.strip()],
+                    "trend_analysis": trend_analysis,
+                    "record_count": result["count"],
+                    "query_method": "direct_database",
+                    "query_time": result["query_time"]
+                }
+            else:
+                return result
+
+        except Exception as e:
+            return {"status": "error", "message": f"点检数据库MCP查询失败: {str(e)}"}
+
+    async def _call_combined_resources_with_mcp(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """使用MCP工具组合查询多个数据库"""
+        try:
+            # 并发调用多个MCP工具
+            tasks = [
+                self._call_maintenance_with_mcp(params),
+                self._call_hazard_with_mcp(params),
+                self._call_inspection_with_mcp(params)
+            ]
+
+            results = await asyncio.gather(*tasks, return_exceptions=True)
+
+            # 处理结果
+            maintenance_data = results[0] if not isinstance(results[0], Exception) else None
+            hazard_data = results[1] if not isinstance(results[1], Exception) else None
+            inspection_data = results[2] if not isinstance(results[2], Exception) else None
+
+            # 生成综合分析
+            combined_analysis = await self._generate_combined_mcp_analysis(
+                maintenance_data, hazard_data, inspection_data, params
+            )
+
+            return {
+                "status": "success",
+                "source": "combined_mcp_resources",
+                "maintenance_data": maintenance_data,
+                "hazard_data": hazard_data,
+                "inspection_data": inspection_data,
+                "combined_analysis": combined_analysis,
+                "query_method": "direct_database_combined",
+                "query_time": datetime.now().isoformat()
+            }
+
+        except Exception as e:
+            return {"status": "error", "message": f"组合MCP查询失败: {str(e)}"}
 
     def _enhance_maintenance_data(self, maintenance_records: List[Dict]) -> List[Dict]:
         """增强维护数据"""
