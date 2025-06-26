@@ -19,6 +19,9 @@ from lightrag.llm.zhipu import zhipu_complete, zhipu_complete_if_cache, zhipu_em
 from lightrag.utils import setup_logger, EmbeddingFunc
 from lightrag.llm.ollama import ollama_model_complete, ollama_embed, _ollama_model_if_cache
 
+from custom_operate import extract_entities_with_priority
+from priority_entity_manager import PriorityEntityManager
+
 
 class FaultAnalysisSystem:
     """基于LightRAG的故障分析系统"""
@@ -26,6 +29,7 @@ class FaultAnalysisSystem:
     def __init__(self, working_dir: str = "./fault_analysis_rag"):
         self.working_dir = working_dir
         self.rag = None
+        self.priority_manager = PriorityEntityManager()  # 添加优先级管理器
         self.setup_directories()
         setup_logger("fault_analysis", level="INFO")
 
@@ -83,13 +87,17 @@ class FaultAnalysisSystem:
                      api_key="9079e8f00e204501bab232ac9597e451.0MAnH8uN6d3cbG9Z"
                 )
             ),
-            chunk_token_size=1500,  # 增大chunk大小以处理复杂故障数据
+            chunk_token_size=1500,
             chunk_overlap_token_size=200,
-            # 配置中文处理
             addon_params={
                 "language": "Simplified Chinese",
-                "entity_types": ["设备", "故障", "原因", "措施", "时间"]
+                "entity_types": self.priority_manager.get_priority_entities()  # 使用优先级实体
             }
+        )
+
+        # 替换默认的提取函数
+        self.rag._extract_entities = lambda *args, **kwargs: extract_entities_with_priority(
+            *args, priority_manager=self.priority_manager, **kwargs
         )
 
         await self.rag.initialize_storages()
