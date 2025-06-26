@@ -520,5 +520,69 @@ async def get_system_status():
         })
 
 
+@app.get("/mcp_tools")
+async def get_mcp_tools():
+    """获取可用的MCP工具"""
+    try:
+        result = await system_deps.business_integrator.get_available_mcp_tools()
+        return JSONResponse(result)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"获取MCP工具失败: {str(e)}")
+
+
+@app.post("/execute_mcp_tool")
+async def execute_mcp_tool(request: Dict[str, Any]):
+    """执行MCP工具"""
+    try:
+        tool_name = request.get("tool_name")
+        parameters = request.get("parameters", {})
+
+        if not tool_name:
+            raise HTTPException(status_code=400, detail="缺少工具名称")
+
+        result = await system_deps.business_integrator.execute_mcp_tool(tool_name, parameters)
+        return JSONResponse(result)
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"执行MCP工具失败: {str(e)}")
+
+
+@app.get("/database_schema/{db_name}")
+async def get_database_schema(db_name: str):
+    """获取数据库表结构"""
+    try:
+        if db_name not in ["maintenance_db", "hazard_db", "inspection_db"]:
+            raise HTTPException(status_code=400, detail="不支持的数据库名称")
+
+        result = await system_deps.business_integrator.get_database_schema(db_name)
+        return JSONResponse(result)
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"获取数据库结构失败: {str(e)}")
+
+
+@app.get("/test_database/{db_name}")
+async def test_database_connection(db_name: str):
+    """测试数据库连接"""
+    try:
+        if db_name not in ["maintenance_db", "hazard_db", "inspection_db"]:
+            raise HTTPException(status_code=400, detail="不支持的数据库名称")
+
+        result = await system_deps.business_integrator.test_database_connection(db_name)
+        return JSONResponse(result)
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"测试数据库连接失败: {str(e)}")
+
+
+@app.post("/close_database_connections")
+async def close_database_connections():
+    """关闭所有数据库连接"""
+    try:
+        result = await system_deps.business_integrator.close_database_connections()
+        return JSONResponse(result)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"关闭数据库连接失败: {str(e)}")
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
