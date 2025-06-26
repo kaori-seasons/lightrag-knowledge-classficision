@@ -554,3 +554,146 @@ class BusinessResourceIntegrator:
                         "status": "error",
                         "message": f"点检数据库HTTP查询失败: {response.status}"
                     }
+
+    async def get_available_mcp_tools(self) -> Dict[str, Any]:
+        """获取可用的MCP工具列表"""
+        return {
+            "status": "success",
+            "tools": self.mcp_tools.tool_definitions,
+            "total_tools": len(self.mcp_tools.tool_definitions)
+        }
+
+    async def execute_mcp_tool(self, tool_name: str, parameters: Dict[str, Any]) -> Dict[str, Any]:
+        """直接执行MCP工具"""
+        try:
+            result = await self.mcp_tools.execute_tool(tool_name, parameters)
+            return {
+                "status": "success",
+                "tool_name": tool_name,
+                "parameters": parameters,
+                "result": result,
+                "execution_time": datetime.now().isoformat()
+            }
+        except Exception as e:
+            return {
+                "status": "error",
+                "tool_name": tool_name,
+                "error": str(e),
+                "execution_time": datetime.now().isoformat()
+            }
+
+    async def get_database_schema(self, db_name: str) -> Dict[str, Any]:
+        """获取数据库表结构信息"""
+        try:
+            conn = await self.db_manager.get_connection(db_name)
+
+            if db_name == "maintenance_db":
+                # PostgreSQL查询表结构
+                schema_query = """  
+                SELECT table_name, column_name, data_type, is_nullable  
+                FROM information_schema.columns   
+                WHERE table_schema = 'public'  
+                ORDER BY table_name, ordinal_position  
+                """
+                rows = await conn.fetch(schema_query)
+
+            elif db_name == "hazard_db":
+                # MySQL查询表结构
+                schema_query = """  
+                SELECT TABLE_NAME as table_name, COLUMN_NAME as column_name,   
+                       DATA_TYPE as data_type, IS_NULLABLE as is_nullable  
+                FROM information_schema.COLUMNS   
+                WHERE TABLE_SCHEMA = DATABASE()  
+                ORDER BY TABLE_NAME, ORDINAL_POSITION  
+                """
+                cursor = await conn.cursor()
+                await cursor.execute(schema_query)
+                rows = await cursor.fetchall()
+                await cursor.close()
+
+            elif db_name == "inspection_db":
+                # PostgreSQL查询表结构
+                schema_query = """  
+                SELECT table_name, column_name, data_type, is_nullable  
+                FROM information_schema.columns   
+                WHERE table_schema = 'public'  
+                ORDER BY table_name, ordinal_position  
+                """
+                rows = await conn.fetch(schema_query)
+
+                # 组织表结构数据
+            schema_info = {}
+            for row in rows:
+                table_name = row[0] if isinstance(row, tuple) else row["table_name"]
+                column_name = row[1] if isinstance(row, tuple) else row["column_name"]
+                data_type = row[2] if isinstance(row, tuple) else row["data_type"]
+                is_nullable = row[3] if isinstance(row, tuple) else row["is_nullable"]
+
+                if table_name not in schema_info:
+                    schema_info[table_name] = []
+
+                schema_info[table_name].append({
+                    "column_name": column_name,
+                    "data_type": data_type,
+                    "is_nullable": is_nullable
+                })
+
+            return {
+                "status": "success",
+                "database": db_name,
+                "schema": schema_info,
+                "table_count": len(schema_info)
+            }
+
+        except Exception as e:
+            return {
+                "status": "error",
+                "database": db_name,
+                "error": str(e)
+            }
+
+    async def test_database_connection(self, db_name: str) -> Dict[str, Any]:
+        """测试数据库连接"""
+        try:
+            start_time = datetime.now()
+            conn = await self.db_manager.get_connection(db_name)
+
+            # 执行简单查询测试连接
+            if db_name in ["maintenance_db", "inspection_db"]:
+                # PostgreSQL
+                test_query = "SELECT 1 as test_value"
+                result = await conn.fetchval(test_query)
+            elif db_name == "hazard_db":
+                # MySQL
+                cursor = await conn.cursor()
+                await cursor.execute("SELECT 1 as test_value")
+                result = await cursor.fetchone()
+                await cursor.close()
+
+            response_time = (datetime.now() - start_time).total_seconds()
+
+            return {
+                "status": "success",
+                "database": db_name,
+                "connection_status": "online",
+                "response_time": f"{response_time:.3f}s",
+                "test_result": result,
+                "test_time": datetime.now().isoformat()
+            }
+
+        except Exception as e:
+            return {
+                "status": "error",
+                "database": db_name,
+                "connection_status": "failed",
+                "error": str(e),
+                "test_time": datetime.now().isoformat()
+            }
+
+    async def close_database_connections(self):
+        """关闭所有数据库连接"""
+        try:
+            await self.db_manager.close_all_connections()
+            return {"status": "success", "message": "所有数据库连接已关闭"}
+        except Exception as e:
+            return {"status": "error", "message": f"关闭连接失败: {str(e)}"}
