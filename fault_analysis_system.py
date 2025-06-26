@@ -24,7 +24,13 @@ from priority_entity_manager import PriorityEntityManager
 
 
 class FaultAnalysisSystem:
-    """基于LightRAG的故障分析系统"""
+    """基于LightRAG的故障分析系统
+    实现了基于优先级的实体匹配和关联：
+
+        1.优先级配置：定义了四个优先级层次的实体类型
+        2.权重系统：为不同优先级的实体分配不同权重
+        3.关系过滤：只在相邻优先级的实体间建立关系
+        4.智能合并：在合并阶段优先保留高优先级实体的信息"""
 
     def __init__(self, working_dir: str = "./fault_analysis_rag"):
         self.working_dir = working_dir
