@@ -64,15 +64,6 @@ class FaultAnalysisSystem:
     async def initialize_rag(self):
         """初始化LightRAG实例"""
 
-        key_string_value_json_storage_cls: type[BaseKVStorage] = (
-            JsonKVStorage
-        )
-
-        global_config = {
-            "llm_model_name": "qwen-plus",
-            "working_dir": "./fault_analysis_rag",
-        }
-
 
         self.rag = LightRAG(
             working_dir=self.working_dir,
