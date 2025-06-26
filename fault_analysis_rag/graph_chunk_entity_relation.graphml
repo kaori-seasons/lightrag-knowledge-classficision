@@ -1,0 +1,473 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d11" for="edge" attr.name="created_at" attr.type="long" />
+  <key id="d10" for="edge" attr.name="file_path" attr.type="string" />
+  <key id="d9" for="edge" attr.name="source_id" attr.type="string" />
+  <key id="d8" for="edge" attr.name="keywords" attr.type="string" />
+  <key id="d7" for="edge" attr.name="description" attr.type="string" />
+  <key id="d6" for="edge" attr.name="weight" attr.type="double" />
+  <key id="d5" for="node" attr.name="created_at" attr.type="long" />
+  <key id="d4" for="node" attr.name="file_path" attr.type="string" />
+  <key id="d3" for="node" attr.name="source_id" attr.type="string" />
+  <key id="d2" for="node" attr.name="description" attr.type="string" />
+  <key id="d1" for="node" attr.name="entity_type" attr.type="string" />
+  <key id="d0" for="node" attr.name="entity_id" attr.type="string" />
+  <graph edgedefault="undirected">
+    <node id="轧机设备">
+      <data key="d0">轧机设备</data>
+      <data key="d1">设备</data>
+      <data key="d2">轧机设备是生产线上的关键设备，需要每日进行检查以确保正常运行。</data>
+      <data key="d3">chunk-12d3bab36261215ab4f9843b09b08db7</data>
+      <data key="d4">business_knowledge_maintenance_standards.txt,</data>
+      <data key="d5">1750670375</data>
+    </node>
+    <node id="润滑系统">
+      <data key="d0">润滑系统</data>
+      <data key="d1">设备</data>
+      <data key="d2">润滑系统是轧机设备的重要组成部分，负责提供必要的润滑，维护周期需要严格规定。</data>
+      <data key="d3">chunk-12d3bab36261215ab4f9843b09b08db7</data>
+      <data key="d4">business_knowledge_maintenance_standards.txt,</data>
+      <data key="d5">1750670375</data>
+    </node>
+    <node id="关键部件">
+      <data key="d0">关键部件</data>
+      <data key="d1">设备</data>
+      <data key="d2">关键部件是轧机设备中起关键作用的部件，需要按照标准进行更换。</data>
+      <data key="d3">chunk-12d3bab36261215ab4f9843b09b08db7</data>
+      <data key="d4">business_knowledge_maintenance_standards.txt,</data>
+      <data key="d5">1750670375</data>
+    </node>
+    <node id="预防性维护计划">
+      <data key="d0">预防性维护计划</data>
+      <data key="d1">措施</data>
+      <data key="d2">预防性维护计划是为了避免设备故障而制定的一系列定期检查和维护措施。</data>
+      <data key="d3">chunk-12d3bab36261215ab4f9843b09b08db7</data>
+      <data key="d4">business_knowledge_maintenance_standards.txt,</data>
+      <data key="d5">1750670375</data>
+    </node>
+    <node id="每日检查项目">
+      <data key="d0">每日检查项目</data>
+      <data key="d1">措施</data>
+      <data key="d2">每日检查项目是对轧机设备进行的日常检查，以确保其正常运行和及时发现潜在问题。</data>
+      <data key="d3">chunk-12d3bab36261215ab4f9843b09b08db7</data>
+      <data key="d4">business_knowledge_maintenance_standards.txt,</data>
+      <data key="d5">1750670375</data>
+    </node>
+    <node id="维护周期">
+      <data key="d0">维护周期</data>
+      <data key="d1">时间</data>
+      <data key="d2">维护周期是指对润滑系统进行定期维护的时间间隔，以确保其长期稳定运行。</data>
+      <data key="d3">chunk-12d3bab36261215ab4f9843b09b08db7</data>
+      <data key="d4">business_knowledge_maintenance_standards.txt,</data>
+      <data key="d5">1750670375</data>
+    </node>
+    <node id="更换标准">
+      <data key="d0">更换标准</data>
+      <data key="d1">措施</data>
+      <data key="d2">更换标准是指对关键部件进行更换的具体操作规范，以确保设备的整体性能。</data>
+      <data key="d3">chunk-12d3bab36261215ab4f9843b09b08db7</data>
+      <data key="d4">business_knowledge_maintenance_standards.txt,</data>
+      <data key="d5">1750670375</data>
+    </node>
+    <node id="安全操作规程">
+      <data key="d0">安全操作规程</data>
+      <data key="d1">设备</data>
+      <data key="d2">安全操作规程是一系列指导设备安全操作和应急处理的规范。</data>
+      <data key="d3">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d4">business_knowledge_safety_regulations.txt,</data>
+      <data key="d5">1750670878</data>
+    </node>
+    <node id="设备操作安全要求">
+      <data key="d0">设备操作安全要求</data>
+      <data key="d1">设备</data>
+      <data key="d2">设备操作安全要求是确保设备在操作过程中符合安全标准的规范。</data>
+      <data key="d3">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d4">business_knowledge_safety_regulations.txt,</data>
+      <data key="d5">1750670878</data>
+    </node>
+    <node id="应急处理程序">
+      <data key="d0">应急处理程序</data>
+      <data key="d1">措施</data>
+      <data key="d2">应急处理程序是在设备出现故障或其他紧急情况时采取的应对措施。</data>
+      <data key="d3">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d4">business_knowledge_safety_regulations.txt,</data>
+      <data key="d5">1750670878</data>
+    </node>
+    <node id="人员安全防护措施">
+      <data key="d0">人员安全防护措施</data>
+      <data key="d1">措施</data>
+      <data key="d2">人员安全防护措施是保护操作人员安全的各种措施和规定。</data>
+      <data key="d3">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d4">business_knowledge_safety_regulations.txt,</data>
+      <data key="d5">1750670878</data>
+    </node>
+    <node id="事故报告流程">
+      <data key="d0">事故报告流程</data>
+      <data key="d1">措施</data>
+      <data key="d2">事故报告流程是在发生事故时需要遵循的报告步骤和程序。</data>
+      <data key="d3">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d4">business_knowledge_safety_regulations.txt,</data>
+      <data key="d5">1750670878</data>
+    </node>
+    <node id="设备">
+      <data key="d0">设备</data>
+      <data key="d1">设备</data>
+      <data key="d2">设备是指需要进行安全操作和防护的各类机械设备。</data>
+      <data key="d3">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d4">business_knowledge_safety_regulations.txt,</data>
+      <data key="d5">1750670878</data>
+    </node>
+    <node id="故障">
+      <data key="d0">故障</data>
+      <data key="d1">故障</data>
+      <data key="d2">故障是指设备在运行过程中出现的各种问题或异常情况。</data>
+      <data key="d3">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d4">business_knowledge_safety_regulations.txt,</data>
+      <data key="d5">1750670878</data>
+    </node>
+    <node id="原因">
+      <data key="d0">原因</data>
+      <data key="d1">原因</data>
+      <data key="d2">原因是指导致设备故障或事故发生的各种因素。</data>
+      <data key="d3">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d4">business_knowledge_safety_regulations.txt,</data>
+      <data key="d5">1750670878</data>
+    </node>
+    <node id="事故">
+      <data key="d0">事故</data>
+      <data key="d1">故障</data>
+      <data key="d2">事故是指由于设备故障或其他原因导致的意外事件。</data>
+      <data key="d3">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d4">business_knowledge_safety_regulations.txt,</data>
+      <data key="d5">1750670878</data>
+    </node>
+    <node id="技术规格要求">
+      <data key="d0">技术规格要求</data>
+      <data key="d1">措施</data>
+      <data key="d2">技术规格要求是指导设备操作和质量控制的详细标准。</data>
+      <data key="d3">chunk-07255550e5a02b7eaf7b2dd6189e95dc</data>
+      <data key="d4">business_knowledge_technical_specifications.txt,</data>
+      <data key="d5">1750670884</data>
+    </node>
+    <node id="设备技术参数">
+      <data key="d0">设备技术参数</data>
+      <data key="d1">设备</data>
+      <data key="d2">设备技术参数指设备的各项技术指标和性能要求。</data>
+      <data key="d3">chunk-07255550e5a02b7eaf7b2dd6189e95dc</data>
+      <data key="d4">business_knowledge_technical_specifications.txt,</data>
+      <data key="d5">1750670884</data>
+    </node>
+    <node id="工艺操作标准">
+      <data key="d0">工艺操作标准</data>
+      <data key="d1">措施</data>
+      <data key="d2">工艺操作标准是指导生产过程中各项操作的规范。</data>
+      <data key="d3">chunk-07255550e5a02b7eaf7b2dd6189e95dc</data>
+      <data key="d4">business_knowledge_technical_specifications.txt,</data>
+      <data key="d5">1750670884</data>
+    </node>
+    <node id="质量控制要求">
+      <data key="d0">质量控制要求</data>
+      <data key="d1">措施</data>
+      <data key="d2">质量控制要求是确保产品质量达到预定标准的措施。</data>
+      <data key="d3">chunk-07255550e5a02b7eaf7b2dd6189e95dc</data>
+      <data key="d4">business_knowledge_technical_specifications.txt,</data>
+      <data key="d5">1750670884</data>
+    </node>
+    <node id="性能指标标准">
+      <data key="d0">性能指标标准</data>
+      <data key="d1">设备</data>
+      <data key="d2">性能指标标准是衡量设备性能的各项指标的具体要求。</data>
+      <data key="d3">chunk-07255550e5a02b7eaf7b2dd6189e95dc</data>
+      <data key="d4">business_knowledge_technical_specifications.txt,</data>
+      <data key="d5">1750670884</data>
+    </node>
+    <node id="设备名称">
+      <data key="d0">设备名称</data>
+      <data key="d1">设备</data>
+      <data key="d2">指代具体的设备，尽管具体名称未给出，但它是故障发生的主体。</data>
+      <data key="d3">chunk-ef87372e2eeafc92377d5b3048d73c2f</data>
+      <data key="d4">fault_FAULT_0.txt</data>
+      <data key="d5">1750670888</data>
+    </node>
+    <node id="发生时间">
+      <data key="d0">发生时间</data>
+      <data key="d1">时间</data>
+      <data key="d2">指代故障发生的具体时间点，尽管具体时间未给出，但它是记录故障的重要时间信息。</data>
+      <data key="d3">chunk-ef87372e2eeafc92377d5b3048d73c2f</data>
+      <data key="d4">fault_FAULT_0.txt</data>
+      <data key="d5">1750670888</data>
+    </node>
+    <node id="故障区域">
+      <data key="d0">故障区域</data>
+      <data key="d1">故障</data>
+      <data key="d2">指代设备发生故障的具体区域或部位，尽管具体区域未给出，但它是故障定位的关键信息。</data>
+      <data key="d3">chunk-ef87372e2eeafc92377d5b3048d73c2f</data>
+      <data key="d4">fault_FAULT_0.txt</data>
+      <data key="d5">1750670888</data>
+    </node>
+    <node id="事故等级">
+      <data key="d0">事故等级</data>
+      <data key="d1">故障</data>
+      <data key="d2">指代故障的严重程度，尽管具体等级未给出，但它是评估故障影响的重要指标。</data>
+      <data key="d3">chunk-ef87372e2eeafc92377d5b3048d73c2f</data>
+      <data key="d4">fault_FAULT_0.txt</data>
+      <data key="d5">1750670888</data>
+    </node>
+    <node id="停机时长">
+      <data key="d0">停机时长</data>
+      <data key="d1">时间</data>
+      <data key="d2">指代设备因故障而停机的持续时间，尽管具体时长为0分钟，但它是衡量故障影响的重要时间参数。</data>
+      <data key="d3">chunk-ef87372e2eeafc92377d5b3048d73c2f</data>
+      <data key="d4">fault_FAULT_0.txt</data>
+      <data key="d5">1750670888</data>
+    </node>
+    <node id="故障部位">
+      <data key="d0">故障部位</data>
+      <data key="d1">故障</data>
+      <data key="d2">指代设备发生故障的具体部位，尽管具体部位未给出，但它是故障分析的关键信息。</data>
+      <data key="d3">chunk-ef87372e2eeafc92377d5b3048d73c2f</data>
+      <data key="d4">fault_FAULT_0.txt</data>
+      <data key="d5">1750670888</data>
+    </node>
+    <node id="原因属性">
+      <data key="d0">原因属性</data>
+      <data key="d1">原因</data>
+      <data key="d2">指代导致故障的原因的性质或类别，尽管具体属性未给出，但它是分析故障原因的重要信息。</data>
+      <data key="d3">chunk-ef87372e2eeafc92377d5b3048d73c2f</data>
+      <data key="d4">fault_FAULT_0.txt</data>
+      <data key="d5">1750670888</data>
+    </node>
+    <node id="根本原因">
+      <data key="d0">根本原因</data>
+      <data key="d1">原因</data>
+      <data key="d2">指代导致故障发生的最根本的原因，尽管具体原因未给出，但它是解决故障的关键因素。</data>
+      <data key="d3">chunk-ef87372e2eeafc92377d5b3048d73c2f</data>
+      <data key="d4">fault_FAULT_0.txt</data>
+      <data key="d5">1750670888</data>
+    </node>
+    <node id="处理措施">
+      <data key="d0">处理措施</data>
+      <data key="d1">措施</data>
+      <data key="d2">指代针对故障采取的处理方法或措施，尽管具体措施未给出，但它是解决故障的重要步骤。</data>
+      <data key="d3">chunk-ef87372e2eeafc92377d5b3048d73c2f</data>
+      <data key="d4">fault_FAULT_0.txt</data>
+      <data key="d5">1750670888</data>
+    </node>
+    <node id="处理人员">
+      <data key="d0">处理人员</data>
+      <data key="d1">措施</data>
+      <data key="d2">指代负责处理故障的人员，尽管具体人员未给出，但他们是执行处理措施的主体。</data>
+      <data key="d3">chunk-ef87372e2eeafc92377d5b3048d73c2f</data>
+      <data key="d4">fault_FAULT_0.txt</data>
+      <data key="d5">1750670888</data>
+    </node>
+    <edge source="轧机设备" target="每日检查项目">
+      <data key="d6">8.0</data>
+      <data key="d7">轧机设备需要每日进行检查，以确保其正常运行，避免故障。</data>
+      <data key="d8">日常维护,设备检查</data>
+      <data key="d9">chunk-12d3bab36261215ab4f9843b09b08db7</data>
+      <data key="d10">business_knowledge_maintenance_standards.txt,</data>
+      <data key="d11">1750670375</data>
+    </edge>
+    <edge source="轧机设备" target="预防性维护计划">
+      <data key="d6">8.0</data>
+      <data key="d7">预防性维护计划是为了确保轧机设备的长期稳定运行而制定的。</data>
+      <data key="d8">设备保障,预防措施</data>
+      <data key="d9">chunk-12d3bab36261215ab4f9843b09b08db7</data>
+      <data key="d10">business_knowledge_maintenance_standards.txt,</data>
+      <data key="d11">1750670375</data>
+    </edge>
+    <edge source="润滑系统" target="维护周期">
+      <data key="d6">7.0</data>
+      <data key="d7">润滑系统的维护周期需要明确规定，以保证其长期稳定运行。</data>
+      <data key="d8">周期维护,润滑保障</data>
+      <data key="d9">chunk-12d3bab36261215ab4f9843b09b08db7</data>
+      <data key="d10">business_knowledge_maintenance_standards.txt,</data>
+      <data key="d11">1750670375</data>
+    </edge>
+    <edge source="润滑系统" target="每日检查项目">
+      <data key="d6">6.0</data>
+      <data key="d7">每日检查项目包括对润滑系统的检查，以确保其正常工作。</data>
+      <data key="d8">日常维护,系统检查</data>
+      <data key="d9">chunk-12d3bab36261215ab4f9843b09b08db7</data>
+      <data key="d10">business_knowledge_maintenance_standards.txt,</data>
+      <data key="d11">1750670375</data>
+    </edge>
+    <edge source="关键部件" target="更换标准">
+      <data key="d6">9.0</data>
+      <data key="d7">关键部件需要按照标准进行更换，以确保设备的整体性能。</data>
+      <data key="d8">标准操作,部件更换</data>
+      <data key="d9">chunk-12d3bab36261215ab4f9843b09b08db7</data>
+      <data key="d10">business_knowledge_maintenance_standards.txt,</data>
+      <data key="d11">1750670375</data>
+    </edge>
+    <edge source="关键部件" target="每日检查项目">
+      <data key="d6">7.0</data>
+      <data key="d7">每日检查项目包括对关键部件的检查，以确保其无损坏。</data>
+      <data key="d8">日常维护,部件检查</data>
+      <data key="d9">chunk-12d3bab36261215ab4f9843b09b08db7</data>
+      <data key="d10">business_knowledge_maintenance_standards.txt,</data>
+      <data key="d11">1750670375</data>
+    </edge>
+    <edge source="预防性维护计划" target="维护周期">
+      <data key="d6">8.0</data>
+      <data key="d7">维护周期是预防性维护计划的一部分，确保设备定期得到维护。</data>
+      <data key="d8">定期维护,预防措施</data>
+      <data key="d9">chunk-12d3bab36261215ab4f9843b09b08db7</data>
+      <data key="d10">business_knowledge_maintenance_standards.txt,</data>
+      <data key="d11">1750670375</data>
+    </edge>
+    <edge source="安全操作规程" target="设备操作安全要求">
+      <data key="d6">9.0</data>
+      <data key="d7">安全操作规程包含设备操作安全要求，确保设备操作的安全性。</data>
+      <data key="d8">安全规范,操作要求</data>
+      <data key="d9">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d10">business_knowledge_safety_regulations.txt,</data>
+      <data key="d11">1750670878</data>
+    </edge>
+    <edge source="安全操作规程" target="应急处理程序">
+      <data key="d6">8.0</data>
+      <data key="d7">安全操作规程包含应急处理程序，用于应对设备故障等紧急情况。</data>
+      <data key="d8">安全保障,应急处理</data>
+      <data key="d9">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d10">business_knowledge_safety_regulations.txt,</data>
+      <data key="d11">1750670878</data>
+    </edge>
+    <edge source="安全操作规程" target="人员安全防护措施">
+      <data key="d6">9.0</data>
+      <data key="d7">安全操作规程包含人员安全防护措施，保护操作人员的安全。</data>
+      <data key="d8">人员防护,安全措施</data>
+      <data key="d9">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d10">business_knowledge_safety_regulations.txt,</data>
+      <data key="d11">1750670878</data>
+    </edge>
+    <edge source="安全操作规程" target="事故报告流程">
+      <data key="d6">8.0</data>
+      <data key="d7">安全操作规程包含事故报告流程，确保事故发生后能够及时报告和处理。</data>
+      <data key="d8">事故处理,报告流程</data>
+      <data key="d9">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d10">business_knowledge_safety_regulations.txt,</data>
+      <data key="d11">1750670878</data>
+    </edge>
+    <edge source="设备操作安全要求" target="设备">
+      <data key="d6">8.0</data>
+      <data key="d7">设备操作安全要求是针对设备操作的安全规范。</data>
+      <data key="d8">操作规范,设备安全</data>
+      <data key="d9">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d10">business_knowledge_safety_regulations.txt,</data>
+      <data key="d11">1750670878</data>
+    </edge>
+    <edge source="应急处理程序" target="故障">
+      <data key="d6">9.0</data>
+      <data key="d7">应急处理程序用于应对设备出现的故障。</data>
+      <data key="d8">应急措施,故障应对</data>
+      <data key="d9">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d10">business_knowledge_safety_regulations.txt,</data>
+      <data key="d11">1750670878</data>
+    </edge>
+    <edge source="人员安全防护措施" target="设备">
+      <data key="d6">8.0</data>
+      <data key="d7">人员安全防护措施是为了在操作设备时保护人员安全。</data>
+      <data key="d8">人员安全,设备操作</data>
+      <data key="d9">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d10">business_knowledge_safety_regulations.txt,</data>
+      <data key="d11">1750670878</data>
+    </edge>
+    <edge source="事故报告流程" target="事故">
+      <data key="d6">9.0</data>
+      <data key="d7">事故报告流程是在发生事故时需要遵循的报告步骤。</data>
+      <data key="d8">事故处理,报告步骤</data>
+      <data key="d9">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d10">business_knowledge_safety_regulations.txt,</data>
+      <data key="d11">1750670878</data>
+    </edge>
+    <edge source="故障" target="原因">
+      <data key="d6">9.0</data>
+      <data key="d7">故障的发生通常有特定的原因。</data>
+      <data key="d8">故障原因,问题分析</data>
+      <data key="d9">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d10">business_knowledge_safety_regulations.txt,</data>
+      <data key="d11">1750670878</data>
+    </edge>
+    <edge source="原因" target="事故">
+      <data key="d6">9.0</data>
+      <data key="d7">事故的发生通常有特定的原因。</data>
+      <data key="d8">事故原因,问题分析</data>
+      <data key="d9">chunk-882d310c91fe6630ac2f9ada8314af76</data>
+      <data key="d10">business_knowledge_safety_regulations.txt,</data>
+      <data key="d11">1750670878</data>
+    </edge>
+    <edge source="技术规格要求" target="设备技术参数">
+      <data key="d6">8.0</data>
+      <data key="d7">技术规格要求中包含了设备技术参数的具体内容。</data>
+      <data key="d8">标准制定,设备性能</data>
+      <data key="d9">chunk-07255550e5a02b7eaf7b2dd6189e95dc</data>
+      <data key="d10">business_knowledge_technical_specifications.txt,</data>
+      <data key="d11">1750670884</data>
+    </edge>
+    <edge source="技术规格要求" target="工艺操作标准">
+      <data key="d6">8.0</data>
+      <data key="d7">技术规格要求中包含了工艺操作标准的具体内容。</data>
+      <data key="d8">标准制定,生产操作</data>
+      <data key="d9">chunk-07255550e5a02b7eaf7b2dd6189e95dc</data>
+      <data key="d10">business_knowledge_technical_specifications.txt,</data>
+      <data key="d11">1750670884</data>
+    </edge>
+    <edge source="技术规格要求" target="质量控制要求">
+      <data key="d6">8.0</data>
+      <data key="d7">技术规格要求中包含了质量控制要求的具体内容。</data>
+      <data key="d8">标准制定,质量保障</data>
+      <data key="d9">chunk-07255550e5a02b7eaf7b2dd6189e95dc</data>
+      <data key="d10">business_knowledge_technical_specifications.txt,</data>
+      <data key="d11">1750670884</data>
+    </edge>
+    <edge source="技术规格要求" target="性能指标标准">
+      <data key="d6">8.0</data>
+      <data key="d7">技术规格要求中包含了性能指标标准的具体内容。</data>
+      <data key="d8">性能评估,标准制定</data>
+      <data key="d9">chunk-07255550e5a02b7eaf7b2dd6189e95dc</data>
+      <data key="d10">business_knowledge_technical_specifications.txt,</data>
+      <data key="d11">1750670884</data>
+    </edge>
+    <edge source="设备技术参数" target="性能指标标准">
+      <data key="d6">9.0</data>
+      <data key="d7">设备技术参数是性能指标标准的具体体现。</data>
+      <data key="d8">性能要求,技术指标</data>
+      <data key="d9">chunk-07255550e5a02b7eaf7b2dd6189e95dc</data>
+      <data key="d10">business_knowledge_technical_specifications.txt,</data>
+      <data key="d11">1750670884</data>
+    </edge>
+    <edge source="设备名称" target="故障区域">
+      <data key="d6">8.0</data>
+      <data key="d7">设备名称指代的设备在故障区域发生了故障.</data>
+      <data key="d8">故障发生,设备部位</data>
+      <data key="d9">chunk-ef87372e2eeafc92377d5b3048d73c2f</data>
+      <data key="d10">fault_FAULT_0.txt</data>
+      <data key="d11">1750670888</data>
+    </edge>
+    <edge source="发生时间" target="停机时长">
+      <data key="d6">7.0</data>
+      <data key="d7">发生时间记录了故障的开始，停机时长记录了故障影响的持续时间.</data>
+      <data key="d8">故障影响,时间记录</data>
+      <data key="d9">chunk-ef87372e2eeafc92377d5b3048d73c2f</data>
+      <data key="d10">fault_FAULT_0.txt</data>
+      <data key="d11">1750670888</data>
+    </edge>
+    <edge source="故障部位" target="根本原因">
+      <data key="d6">9.0</data>
+      <data key="d7">故障部位是故障发生的具体位置，根本原因是导致该部位故障的根本因素.</data>
+      <data key="d8">原因分析,故障定位</data>
+      <data key="d9">chunk-ef87372e2eeafc92377d5b3048d73c2f</data>
+      <data key="d10">fault_FAULT_0.txt</data>
+      <data key="d11">1750670888</data>
+    </edge>
+    <edge source="处理措施" target="处理人员">
+      <data key="d6">8.0</data>
+      <data key="d7">处理措施是由处理人员执行的，两者共同作用以解决故障.</data>
+      <data key="d8">执行主体,故障处理</data>
+      <data key="d9">chunk-ef87372e2eeafc92377d5b3048d73c2f</data>
+      <data key="d10">fault_FAULT_0.txt</data>
+      <data key="d11">1750670888</data>
+    </edge>
+  </graph>
+</graphml>

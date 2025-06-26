@@ -1,0 +1,42 @@
+{
+  "doc-12d3bab36261215ab4f9843b09b08db7": {
+    "status": "processed",
+    "chunks_count": 1,
+    "content": "设备维护标准规范：  \n            1. 轧机设备每日检查项目  \n            2. 润滑系统维护周期  \n            3. 关键部件更换标准  \n            4. 预防性维护计划",
+    "content_summary": "设备维护标准规范：  \n            1. 轧机设备每日检查项目  \n            2. 润滑系统维护周期  \n            3. 关键部件更换标准  \n            4. 预防性维护计划",
+    "content_length": 114,
+    "created_at": "2025-06-23T02:56:47.451087+00:00",
+    "updated_at": "2025-06-23T09:27:58.358115+00:00",
+    "file_path": "business_knowledge_maintenance_standards.txt,"
+  },
+  "doc-882d310c91fe6630ac2f9ada8314af76": {
+    "status": "processed",
+    "chunks_count": 1,
+    "content": "安全操作规程：  \n            1. 设备操作安全要求  \n            2. 应急处理程序  \n            3. 人员安全防护措施  \n            4. 事故报告流程",
+    "content_summary": "安全操作规程：  \n            1. 设备操作安全要求  \n            2. 应急处理程序  \n            3. 人员安全防护措施  \n            4. 事故报告流程",
+    "content_length": 107,
+    "created_at": "2025-06-23T03:01:34.149166+00:00",
+    "updated_at": "2025-06-23T09:28:04.863270+00:00",
+    "file_path": "business_knowledge_safety_regulations.txt,"
+  },
+  "doc-07255550e5a02b7eaf7b2dd6189e95dc": {
+    "status": "processed",
+    "chunks_count": 1,
+    "content": "技术规格要求：  \n            1. 设备技术参数  \n            2. 工艺操作标准  \n            3. 质量控制要求  \n            4. 性能指标标准",
+    "content_summary": "技术规格要求：  \n            1. 设备技术参数  \n            2. 工艺操作标准  \n            3. 质量控制要求  \n            4. 性能指标标准",
+    "content_length": 103,
+    "created_at": "2025-06-23T03:21:34.523122+00:00",
+    "updated_at": "2025-06-23T09:28:08.543313+00:00",
+    "file_path": "business_knowledge_technical_specifications.txt,"
+  },
+  "doc-ef87372e2eeafc92377d5b3048d73c2f": {
+    "status": "processed",
+    "chunks_count": 1,
+    "content": "【故障基本信息】\n事故编码: N/A\n设备名称: N/A\n发生时间: N/A\n故障区域: N/A\n事故等级: N/A\n停机时长: 0分钟\n\n【故障现象描述】\nN/A\n表面现象: N/A\n\n【原因分析】\n故障部位: N/A\n原因属性: N/A\n根本原因: N/A\n根本原因简述: N/A\n\n【处理措施】\n处理措施: N/A\n处理人员: N/A\n\n【损失评估】\n直接损失: 0元\n间接损失: 0元\n产量损失: 0\n考核金额: 0元",
+    "content_summary": "【故障基本信息】\n事故编码: N/A\n设备名称: N/A\n发生时间: N/A\n故障区域: N/A\n事故等级: N/A\n停机时长: 0分钟\n\n【故障现象描述】\nN/A\n表面现象: N/A\n\n【原因分析】\n故障部位: N/A\n原因属性: N/A\n根本原因: N/A\n根本原因简述: N/A\n\n【处理措施】\n处理措施: N/A\n处理人员: N/A\n\n【损失评估】\n直接损失: 0元\n间接损失: 0元\n产量损失: 0\n考核金额: 0元",
+    "content_length": 213,
+    "created_at": "2025-06-23T03:21:42.199663+00:00",
+    "updated_at": "2025-06-23T09:28:13.460473+00:00",
+    "file_path": "fault_FAULT_0.txt"
+  }
+}

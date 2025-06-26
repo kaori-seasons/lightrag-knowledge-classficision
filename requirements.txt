@@ -1,0 +1,12 @@
+lightrag-hku>=0.1.0
+pandas>=1.5.0
+openpyxl>=3.1.0
+fastapi>=0.100.0
+uvicorn>=0.23.0
+python-multipart>=0.0.6
+python-dotenv>=1.0.0
+asyncio>=3.4.3
+pathlib>=1.0.1
+typing-extensions>=4.0.0
+asyncpg
+aiomysql
